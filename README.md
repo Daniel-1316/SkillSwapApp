@@ -77,4 +77,4 @@ The project demonstrates a distributed web application built with ASP.NET Core M
 Clone the repository:
 ```bash
 git clone https://github.com/Daniel-1316/distributed-applications-cs.git
-cd distributed-applications-cs/course-work/implementations/SkillSwap
+cd distributed-applications-cs/course-work/implementations/SkillSwapApp
