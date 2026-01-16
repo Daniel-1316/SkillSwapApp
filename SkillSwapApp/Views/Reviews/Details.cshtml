@@ -1,0 +1,76 @@
+﻿@model SkillSwapApp.Models.Review
+
+@{
+    ViewData["Title"] = "Review Details";
+}
+
+<h1>Review Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Reviewer</dt>
+        <dd class="col-sm-9">
+            <strong>@Model.Reviewer?.Username</strong>
+            <br />
+            <small class="text-muted">@Model.Reviewer?.Email</small>
+        </dd>
+
+        <dt class="col-sm-3">Reviewed User</dt>
+        <dd class="col-sm-9">
+            <strong>@Model.ReviewedUser?.Username</strong>
+            <br />
+            <small class="text-muted">@Model.ReviewedUser?.Email</small>
+        </dd>
+
+        <dt class="col-sm-3">Skill</dt>
+        <dd class="col-sm-9">
+            <strong>@Model.Skill?.Title</strong>
+            <br />
+            <small class="text-muted">Category: @Model.Skill?.Category</small>
+        </dd>
+
+        <dt class="col-sm-3">Rating</dt>
+        <dd class="col-sm-9">
+            <span style="font-size: 1.5rem; color: #ffc107;">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    if (i <= Model.Rating)
+                    {
+                        <span>⭐</span>
+                    }
+                    else
+                    {
+                        <span style="color: #ddd;">☆</span>
+                    }
+                }
+            </span>
+            <strong>(@Model.Rating / 5)</strong>
+        </dd>
+
+        <dt class="col-sm-3">Comment</dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.Comment))
+            {
+                <div class="alert alert-light" style="border-left: 4px solid #667eea;">
+                    <i>"@Model.Comment"</i>
+                </div>
+            }
+            else
+            {
+                <span class="text-muted">No comment provided</span>
+            }
+        </dd>
+
+        <dt class="col-sm-3">Date</dt>
+        <dd class="col-sm-9">
+            @Model.CreatedAt.ToString("dddd, dd MMMM yyyy 'at' HH:mm")
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
